@@ -19,9 +19,19 @@ class BooksSeed extends AbstractSeed
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
         $data = [];
-
-        $table = $this->table('books');
-        $table->insert($data)->save();
+        for ($i = 0; $i < 1000; $i++) {
+            $data[] = [
+                'author_id'          => $faker->randomNumber(2),
+                'title'          => substr($faker->paragraph, 0, 180),
+                'description'   => $faker->text,
+                'isbn'   => $faker->isbn13,
+                'price'   => $faker->randomFloat(3),
+                'modified_at'       => date('Y-m-d H:i:s'),
+                'created_at'       => date('Y-m-d H:i:s'),
+            ];
+        }
+        $this->insert('books', $data);
     }
 }

@@ -19,9 +19,17 @@ class AuthorsSeed extends AbstractSeed
      */
     public function run()
     {
-        $data = [];
 
-        $table = $this->table('authors');
-        $table->insert($data)->save();
+        $faker = Faker\Factory::create();
+        $data = [];
+        for ($i = 0; $i < 100; $i++) {
+            $data[] = [
+                'name'          => $faker->name,
+                'description'   => $faker->text,
+                'modified_at'       => date('Y-m-d H:i:s'),
+                'created_at'       => date('Y-m-d H:i:s'),
+            ];
+        }
+        $this->insert('authors', $data);
     }
 }

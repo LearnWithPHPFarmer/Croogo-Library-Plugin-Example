@@ -15,12 +15,24 @@ class CreateBooks extends AbstractMigration
     {
         $table = $this->table('books');
 
-        $table->addColumn('name', 'string', [
+        $table->addColumn('author_id', 'integer', [
+            'null' => false,
+        ]);
+        $table->addColumn('title', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('description', 'text', [
+            'default' => null,
+            'null' => true,
+        ]);
+        $table->addColumn('isbn', 'string', [
+            'default' => null,
+            'limit' => 120,
+            'null' => false,
+        ]);
+        $table->addColumn('price', 'text', [
             'default' => null,
             'null' => false,
         ]);
